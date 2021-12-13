@@ -15,17 +15,9 @@ Project Structure
 Downloading the **mflix-js.zip** handout may take a few minutes. Unzipping the
 file should create a new directory called **mflix-js**.
 
-Most of your work will be implementing methods in the **dao** directory, which
-contains all database interfacing methods. The API will make calls to Data
-Access Objects (DAOs) that interact directly with MongoDB.
-
 The unit tests in **test** will test these database access methods directly,
 without going through the API. The UI will run these methods in integration
 tests, and therefore requires the full application to be running.
-
-The lesson handouts can be found in the **test/lessons** directory. These files
-will look like **<lesson-name>.spec.js**, and can be run with ``npm test -t
-<lesson-name>``.
 
 The API layer is fully implemented, as is the UI. The application is programmed
 to  run on port **5000** by default - if you need to run on a port other than
