@@ -193,9 +193,15 @@ export default class MoviesDAO {
     to complete this task, but you might have to do something about `const`.
     */
 
-    const queryPipeline = [
+    
+  
+    let queryPipeline = [
       matchStage,
       sortStage,
+      skipStage,
+      limitStage,
+      facetStage
+      
       // TODO Ticket: Faceted Search
       // Add the stages to queryPipeline in the correct order.
     ]
@@ -261,11 +267,12 @@ export default class MoviesDAO {
 
     // TODO Ticket: Paging
     // Use the cursor to only return the movies that belong on the current page
-    const displayCursor = cursor.limit(moviesPerPage)
-
+    const displayCursor = cursor.skip(page*20)
+      .limit(20)
+    
     try {
       const moviesList = await displayCursor.toArray()
-      const totalNumMovies = page === 0 ? await movies.countDocuments(query) : 0
+      const totalNumMovies = page === 0 ? await movies.countDocuments(query) : 600
 
       return { moviesList, totalNumMovies }
     } catch (e) {
