@@ -302,13 +302,39 @@ export default class MoviesDAO {
 
       // TODO Ticket: Get Comments
       // Implement the required pipeline.
-      const pipeline = [
+
+      
+      //perform a $lookup in MongoCompass and then export as node code
+const pipeline = [
+  {
+    $match: {
+      _id: ObjectId(id),
+    },
+  },
+  {
+    $lookup: {
+      from: "comments",
+      let: {
+        id: "$_id",
+      },
+      pipeline: [
         {
           $match: {
-            _id: ObjectId(id)
-          }
-        }
-      ]
+            $expr: {
+              $eq: ["$movie_id", "$$id"],
+            },
+          },
+        },
+        {
+          $sort: {
+            date: -1,
+          },
+        },
+      ],
+      as: "comments",
+    },
+  },
+]
       return await movies.aggregate(pipeline).next()
     } catch (e) {
       /**
