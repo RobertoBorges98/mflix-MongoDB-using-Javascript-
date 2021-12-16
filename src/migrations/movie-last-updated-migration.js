@@ -1,7 +1,7 @@
 const MongoClient = require("mongodb").MongoClient
 const ObjectId = require("mongodb").ObjectId
 const MongoError = require("mongodb").MongoError
-require("dotenv").config()
+require("dotenv").config({ path: 'C:\Users\robby\OneDrive\Documents\Full Stack Development\mflix\.env' })
 
 /**
  * Ticket: Migration
