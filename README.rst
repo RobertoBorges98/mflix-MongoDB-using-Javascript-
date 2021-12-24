@@ -12,7 +12,6 @@ The dependencies for this  application should be downloaded using the
 your operating system.
 
 Once the installation is complete, you may need to restart your computer before
-using the command line tools. You can test that it's installed by running the
-following command:
+using the command line tools. 
 
 
